@@ -605,6 +605,8 @@ void ether1SendPingResponse(etherHeader *ether)
     icmp->check = getEther1Checksum(sum);
     // send packet
     ether1PutPacket(ether, sizeof(etherHeader) + ntohs(ip->length));
+    etherGetPacket(ether, sizeof(etherHeader) + ntohs(ip->length));
+    etherPutPacket(ether, sizeof(etherHeader) + ntohs(ip->length));
 }
 
 // Determines whether packet is ARP
@@ -657,6 +659,8 @@ void ether1SendArpResponse(etherHeader *ether)
     }
     // send packet
     ether1PutPacket(ether, sizeof(etherHeader) + sizeof(arpPacket));
+    etherGetPacket(ether, sizeof(etherHeader) + sizeof(arpPacket));
+    etherPutPacket(ether, sizeof(etherHeader) + sizeof(arpPacket));
 }
 
 // Sends an ARP request
@@ -689,6 +693,8 @@ void ether1SendArpRequest(etherHeader *ether, uint8_t ipFrom[], uint8_t ipTo[])
     }
     // send packet
     ether1PutPacket(ether, sizeof(etherHeader) + sizeof(arpPacket));
+    etherGetPacket(ether, sizeof(etherHeader) + sizeof(arpPacket));
+    etherPutPacket(ether, sizeof(etherHeader) + sizeof(arpPacket));
 }
 
 // Determines whether packet is UDP datagram
@@ -780,6 +786,8 @@ void ether1SendUdpResponse(etherHeader *ether, uint8_t *udpData, uint8_t udpSize
 
     // send packet with size = ether + udp hdr + ip header + udp_size
     ether1PutPacket(ether, sizeof(etherHeader) + ipHeaderLength + udpLength);
+    etherGetPacket(ether, sizeof(etherHeader) + ipHeaderLength + udpLength);
+    etherPutPacket(ether, sizeof(etherHeader) + ipHeaderLength + udpLength);
 }
 
 // Determines whether packet is DHCP
@@ -837,7 +845,7 @@ bool ether1IsIpValid()
 }
 
 // Sets IP address
-void ether1SetipAddress1(const uint8_t ip[4])
+void ether1SetIpAddress(const uint8_t ip[4])
 {
     uint8_t i;
     for (i = 0; i < 4; i++)
@@ -845,7 +853,7 @@ void ether1SetipAddress1(const uint8_t ip[4])
 }
 
 // Gets IP address
-void ether1GetipAddress1(uint8_t ip[4])
+void ether1GetIpAddress(uint8_t ip[4])
 {
     uint8_t i;
     for (i = 0; i < 4; i++)
@@ -853,7 +861,7 @@ void ether1GetipAddress1(uint8_t ip[4])
 }
 
 // Sets IP subnet mask
-void ether1SetipSubnetMask1(const uint8_t mask[4])
+void ether1SetIpSubnetMask(const uint8_t mask[4])
 {
     uint8_t i;
     for (i = 0; i < 4; i++)
@@ -861,7 +869,7 @@ void ether1SetipSubnetMask1(const uint8_t mask[4])
 }
 
 // Gets IP subnet mask
-void ether1GetipSubnetMask1(uint8_t mask[4])
+void ether1GetIpSubnetMask(uint8_t mask[4])
 {
     uint8_t i;
     for (i = 0; i < 4; i++)
@@ -885,7 +893,7 @@ void ether1GetIpGatewayAddress(uint8_t ip[4])
 }
 
 // Sets IP DNS address
-void ether1SetipDnsAddress1(const uint8_t ip[4])
+void ether1SetIpDnsAddress(const uint8_t ip[4])
 {
     uint8_t i;
     for (i = 0; i < 4; i++)
@@ -893,7 +901,7 @@ void ether1SetipDnsAddress1(const uint8_t ip[4])
 }
 
 // Gets IP gateway address
-void ether1GetipDnsAddress1(uint8_t ip[4])
+void ether1GetIpDnsAddress(uint8_t ip[4])
 {
     uint8_t i;
     for (i = 0; i < 4; i++)
@@ -901,7 +909,7 @@ void ether1GetipDnsAddress1(uint8_t ip[4])
 }
 
 // Sets IP time server address
-void ether1SetipTimeServerAddress1(const uint8_t ip[4])
+void ether1SetIpTimeServerAddress(const uint8_t ip[4])
 {
     uint8_t i;
     for (i = 0; i < 4; i++)
@@ -909,7 +917,7 @@ void ether1SetipTimeServerAddress1(const uint8_t ip[4])
 }
 
 // Gets IP time server address
-void ether1GetipTimeServerAddress1(uint8_t ip[4])
+void ether1GetIpTimeServerAddress(uint8_t ip[4])
 {
     uint8_t i;
     for (i = 0; i < 4; i++)

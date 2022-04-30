@@ -27,10 +27,12 @@
 
 #include <stdint.h>
 #include <stdbool.h>
+#include "eth0.h"
 
 // This M4F is little endian (TI hardwired it this way)
 // Network byte order is big endian
 // Must interpret uint16_t in reverse order
+/*
 
 typedef struct _enc28j60Frame // 4 bytes
 {
@@ -125,6 +127,7 @@ typedef struct _tcpHeader // 20 or more bytes
   uint16_t urgentPointer;
   uint8_t  data[0];
 } tcpHeader;
+*/
 
 #define ETHER_UNICAST        0x80
 #define ETHER_BROADCAST      0x01
@@ -185,18 +188,22 @@ void ether1GetIpTimeServerAddress(uint8_t ip[4]);
 void ether1SetMacAddress(uint8_t mac0, uint8_t mac1, uint8_t mac2, uint8_t mac3, uint8_t mac4, uint8_t mac5);
 void ether1GetMacAddress(uint8_t mac[6]);
 
+/*
 void etherSumWords(void* data, uint16_t sizeInBytes, uint32_t* sum);
 uint16_t getEtherChecksum(uint32_t sum);
 void etherCalcIpChecksum(ipHeader* ip);
+*/
 
+/*
 uint16_t htons1(uint16_t value);
 #define ntohs htons1
 
 uint32_t htonl1(uint32_t value);
 #define ntohl htonl1
 
+
 // Packets
 #define IP_ADD_LENGTH 4
 #define HW_ADD_LENGTH 6
-
+*/
 #endif

@@ -21,11 +21,12 @@
 #include <stdbool.h>
 #include "tm4c123gh6pm.h"
 #include "timer.h"
+#include "gpio.h"
 
 //-----------------------------------------------------------------------------
 // Global variables
 //-----------------------------------------------------------------------------
-
+#define BLUE_LED PORTF,2
 #define NUM_TIMERS 10
 
 _callback fn[NUM_TIMERS];
@@ -153,3 +154,7 @@ uint32_t random32()
     return TIMER4_TAV_R;
 }
 
+void flash()
+{
+    setPinValue(BLUE_LED, !getPinValue(BLUE_LED));
+}

@@ -32,5 +32,6 @@ bool stopTimer(_callback callback);
 bool restartTimer(_callback callback);
 void tickIsr();
 uint32_t random32();
+void flash();
 
 #endif
